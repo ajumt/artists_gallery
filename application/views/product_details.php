@@ -62,7 +62,7 @@
                         </div>
                         <br>
                         <div>
-                            <a href="<?php echo site_url('site/cart/'.$item->id) ?>" style="width: 80px; height: 27px; font-size: 10px;" class="cart-nav btn btn-success">Add To Cart</a>
+                            <a href="<?php echo site_url(isset($user['user_id'])?'site/cart/'.$item->id:'main/login') ?>" style="width: 80px; height: 27px; font-size: 10px;" class="cart-nav btn btn-success">Add To Cart</a>
                         </div>
                         <br>
                         <div class="short_overview my-5">
@@ -72,19 +72,27 @@
                     </div>
                 </div>
 
-                <?php echo form_open('');?>
+                <?php 
+                echo form_open('');?>
                     <div class="short_overview my-5">
                         <h2>  Comments: </h2>
+                        <?php if(isset($user['user_id'])){?>
                         <textarea name="comment"  rows="8" cols="100"></textarea>
                         <?php echo form_submit('submit','submit ','class="btn btn-success"');?>
-                        <?php foreach($comment as $item1){ ?>
+                        <?php }
+                        if(count($comment)>0)
+                            foreach($comment as $item1){ ?>
 
-                            <p><b><?php  echo $item1->username;?></b><br>
-                                <i class="fa fa-cloud" style="font-size:12px; color: black;"></i>
-                                <?php echo $item1->comment; ?>
-                            </p>
-                        <?php } ?>
-
+                                <p><b><?php  echo $item1->username;?></b><br>
+                                    <i class="fa fa-cloud" style="font-size:12px; color: black;"></i>
+                                    <?php echo $item1->comment; ?>
+                                </p>
+                        <?php
+                            } 
+                        else{
+                        ?>
+                            <h4> No Comments</h4>
+                        <?php }?>
                     </div>
                 <?php echo form_close();?>        
             <?php }?>

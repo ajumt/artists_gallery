@@ -159,22 +159,6 @@ class Artist_model extends CI_Model
         return array('products'=>$result,'meta'=>$meta);
     }
 
-    public function check_cart_item($id,$userid)
-    {
-        $this->db->where('product_id',$id);
-        $this->db->where('user_id',$userid);
-        $query=$this->db->get('cart');
-//        print_r($query);
-        if($query->num_rows()== 1)
-        {
-            return $query->row();
-//
-        }
-        else{
-            false;
-        }
-
-    }
     function cart_insert($data)
     {
         $this->db->insert('cart',$data);

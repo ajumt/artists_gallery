@@ -20,7 +20,7 @@ class MY_Controller extends CI_Controller
         $public_menu = array(
             array('href'=>'site/index','text'=>'Home','img'=>'dashboard.png'),
             array('href'=>'site/shop','text'=>'Shop','img'=>'shop.png'),
-            array('href'=>'site/cart','text'=>'Cart','img'=>'cart.png'),
+            // array('href'=>'site/cart','text'=>'Cart','img'=>'cart.png'),
             array('href'=>'site/signin','text'=>'Sign Up','img'=>'sign-up.png'),
             array('href'=>'main/login','text'=>'Login','img'=>'login.png'),
         );

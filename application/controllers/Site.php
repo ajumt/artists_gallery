@@ -17,8 +17,9 @@ class Site extends MY_Controller
         $this->data['products']=$this->Seller_model->getAllseller();
         $this->render('sitedashboard');
     }
-    public function shop($page=1,$category=null)
+    public function shop($page=1)
     {
+
         if($page<=0) redirect('site/shop/1');
         $page = $page-1;
         $offset=0; $limit=4;
@@ -27,6 +28,7 @@ class Site extends MY_Controller
         if($this->input->get('key'))
             $key = $this->input->get('key');
         $offset = $page*$limit;
+        $category=isset($_GET['cats'])?$_GET['cats']:[];
         $product_data = $this->productcategory_model->get_shop_products($limit,$offset,$category);
         $product_data['meta']['page']=$page;
         $this->data['shop_products']= $product_data['products'];
@@ -36,14 +38,15 @@ class Site extends MY_Controller
         $this->render('shop');
     }
 
-    public function cart($id=null)
+    public function cart($id=null,$quantity=1)
     {
         $userid=$this->session->userdata('user_id');
         if($id!=null){
 
             $data=array(
-              'user_id' => $this->session->userdata('user_id'),
-                'product_id' => $id
+                'user_id' => $this->session->userdata('user_id'),
+                'product_id' => $id,
+                'product_qty' => $quantity
             );
 //            print_r($data);
             $check = $this->Seller_model->check_cart_item($id,$userid);
@@ -327,7 +330,7 @@ class Site extends MY_Controller
         redirect('site/view_message');
     }
 
-    public function buyer_display()
+    public function profile()
     {
        $userid=$this->session->userdata['user_id'];
         $this->data['userid']=$userid;

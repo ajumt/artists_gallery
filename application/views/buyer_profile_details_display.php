@@ -3,7 +3,7 @@
         <div class="row">
                 <?php foreach($buyer as $item){?>
                     <div class="col-md-12 grid-margin" style="margin-bottom:10px;">
-                        <div class="card" style="margin-left: 200px; height: 600px;border-radius: 20px;">
+                        <div class="card" style="height: 600px;border-radius: 20px;">
                             <div class="card-body text-center">
                                 <br>
                                 <h3 style="color: #0000cc;"><?php echo $item->first_name.' '.$item->last_name?></h3><br>

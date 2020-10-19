@@ -14,6 +14,8 @@
                             <th>Name</th>
                             <th>Price</th>
                             <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -35,7 +37,7 @@
                                 <div class="qty-btn d-flex">
                                     <div class="quantity">
                                         <span class="qty-minus" onclick="var effect = document.getElementById('qty<?php echo $item->id?>'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ){ effect.value--;effect.dispatchEvent(new Event('change'));}return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                        <input data-id="<?php echo $item->id?>" type="number" class="qty-text" id="qty<?php echo $item->id?>" step="1" min="1" max="300" name="quantity" value="1"  onchange="changeTotal(this);updateQty(this)">
+                                        <input data-id="<?php echo $item->id?>" type="number" class="qty-text" id="qty<?php echo $item->id?>" step="1" min="1" max="300" name="quantity" value="<?php echo $item->product_qty?>"  onchange="changeTotal(this);updateQty(this)">
                                         <span class="qty-plus" onclick="var effect = document.getElementById('qty<?php echo $item->id?>'); var qty = effect.value; if( !isNaN( qty )) {effect.value++; effect.dispatchEvent(new Event('change'));}return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                     </div>
                                 </div>
@@ -141,7 +143,7 @@
 //        console.log(str);
         var id=$(inp).attr('data-id');
 //        console.log(id);
-        var url=site_url+"Site/add_qty/"+str+"/"+id;
+        var url=site_url+"site/cart/"+str+"/"+id;
 //            console.log(url);
         $.ajax({
             type: 'GET',

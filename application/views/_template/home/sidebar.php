@@ -16,7 +16,7 @@
             <img style="width: 50px;" src="<?php echo base_url('media/uploads/'.$this->session->userdata('image'))?>">
         </div>
         <div style="border-bottom: solid black;padding-top: 0px; padding-bottom: 10px;">
-            <a href=<?php echo site_url('Site/buyer_display/')?>>
+            <a href=<?php echo site_url('site/profile/')?>>
             <?php echo $this->session->userdata('username');?>
             <br>UserType:<?php echo $this->session->userdata('type');?>
            </a>

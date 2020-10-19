@@ -96,32 +96,27 @@ class Productcategory_model extends CI_Model {
 
     public function get_shop_products($limit=4,$offset=0,$key=null,$count=false,$category=null)
     {
-        if($category!=null) {
-            $this->db->select('*');
-            $this->db->from('product_category');
-            $this->db->where('id', $category);
-        }else {
-
-            $this->db->select('*');
-            if ($key != null)
-                $this->db->like('product_name', $key);
-            if (!$count)
-                $this->db->limit($limit, $offset);
-            if (!$count)
-                $query = $this->db->get('product');
-            else {
-                $total = $this->db->count_all_results('product');
-                return $total;
-            }
-            $result = $query->result();
-            $total = $this->get_shop_products($limit, $offset, $key, true);
-            $meta = array(
-                'limit' => $limit,
-                'total' => $total,
-                'key' => $key
-            );
-            return array('products' => $result, 'meta' => $meta);
+        if($category!=null) 
+            $this->db->orWhereIn('product_cat_type', $category);
+        $this->db->select('*');
+        if ($key != null)
+            $this->db->like('product_name', $key);
+        if (!$count)
+            $this->db->limit($limit, $offset);
+        if (!$count)
+            $query = $this->db->get('product');
+        else {
+            $total = $this->db->count_all_results('product');
+            return $total;
         }
+        $result = $query->result();
+        $total = $this->get_shop_products($limit, $offset, $key, true);
+        $meta = array(
+            'limit' => $limit,
+            'total' => $total,
+            'key' => $key
+        );
+        return array('products' => $result, 'meta' => $meta);
     }
 
         public function display_product_categories()
