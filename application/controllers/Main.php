@@ -33,7 +33,6 @@ class Main extends MY_Controller
 		if ($this->form_validation->run()===FALSE)
 		{
 			$this->render('user_login');
-
 		}
 		else {
 			$user = $this->login->login($this->input->post('username'),$this->input->post('password'));

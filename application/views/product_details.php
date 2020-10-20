@@ -67,7 +67,7 @@ function deleteComment($user,$product,$comment){
                             <!-- Avaiable -->
                             <p class="avaibility"><i class="fa fa-circle"></i> In Stock</p>
                         </div>
-                        <?php if(isset($user)&&$user['type']!='Admin'){?>
+                        <?php if(!isset($user)||($user['type']!='Admin')){?>
                         <br>
                         <div>
                             

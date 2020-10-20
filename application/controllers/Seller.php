@@ -131,11 +131,12 @@ class Seller extends MY_Controller
         $this->data['gender'] = $gender;
         $this->data['artists'] = $artists;
         $this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<p class="error">', '</p>');
         $this->form_validation->set_rules('first_name', 'first_name', 'required');
         $this->form_validation->set_rules('last_name', 'last_name', 'required');
-        $this->form_validation->set_rules('email', 'email', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required|is_unique[user.email]');
         $this->form_validation->set_rules('mobile_number', 'mobile_number', 'required');
-        $this->form_validation->set_rules('user_name', 'user_name', 'required');
+        $this->form_validation->set_rules('user_name', 'user_name', 'required|is_unique[user.username]');
         $this->form_validation->set_rules('password', 'password', 'required');
         $this->form_validation->set_rules('confirm_password', 'confirm_password', 'required');
         $this->form_validation->set_rules('city', 'city', 'required');
@@ -179,7 +180,7 @@ class Seller extends MY_Controller
             if (is_array($userimage)) {
                 $data['image'] = $userimage['file_name'];
             } else {
-                echo $userimage;
+                $data['image'] = 'fem2.jpg';
             }
             $this->Seller_model->userreg($data);
             if ($type == 'Artists') {
