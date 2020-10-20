@@ -64,9 +64,9 @@ class Product extends MY_Controller
                   echo $imgdata;
               }
 
-             $this->Product_model->insertuserdata($data,$data1);
+             $dat = $this->Product_model->insertuserdata($data,$data1);
 
-             redirect('seller/my_product_view');
+             redirect('seller/product_details/'.$dat);
           }
     }
 

@@ -4,7 +4,10 @@
         <div class="row">
             <div class="col-12 col-lg-12">
                 <div class="cart-title mt-50">
-                    <h2>My Products View</h2>
+                    <h2>My Products View <span style="float:right;">
+                    <a href="<?php echo site_url('product/add_product');?>" class="btn btn-success"><i class="fa fa-plus"></i></a></span>
+                        <a href="<?php echo site_url('product/my_product_view');?>" class="btn btn-success"><i class="fa fa-plus"></i></a></span>
+                    </h2>
                 </div>
 
                 <div class="cart-table clearfix">
@@ -23,7 +26,7 @@
 <!--                            product-->
                             <?php foreach($seller as $item){?>
                             <td class="cart_product_img">
-                                <a href="#"><img src="<?php echo base_url('media/uploads/'.$item->image)?>" alt="Product"></a>
+                                <a href="<?php echo site_url('seller/product_details/'.$item->id);?>"><img src="<?php echo base_url('media/uploads/'.$item->image)?>" alt="Product"></a>
                             </td>
                             <td class="cart_product_desc">
                                 <h5><?php echo $item->product_name;?></h5>
