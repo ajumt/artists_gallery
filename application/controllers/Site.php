@@ -195,13 +195,13 @@ class Site extends MY_Controller
         redirect('site/art_category');
     }
 
-    public function seller_view()
+    public function all_artists()
     {
         $details=$this->Seller_model->display_seller_details();
         $this->data['seller']=$details;
         $this->render('all_seller_view');
     }
-    public function buyer_view()
+    public function all_buyers()
     {
         $details=$this->Seller_model->display_buyer_details();
         $this->data['buyer']=$details;
@@ -211,7 +211,7 @@ class Site extends MY_Controller
     public function user_details($id)
     {
         $details=$this->Seller_model->display_user_details($id);
-        $this->data['user']=$details;
+        $this->data['userData']=(object)$details;
         $this->render('user_details_view');
     }
     public function buyer_user_details($id)
@@ -420,5 +420,25 @@ class Site extends MY_Controller
     {
       $this->Seller_model->cart_product_delete($id);
       redirect('site/cart');
+    }
+    public function deactivate_user($type,$id)
+    {
+      $this->Seller_model->deactivate_user($id);
+      redirect($type=='artist'?'site/all_artists':'site/all_buyers');
+    }
+    public function activate_user($type,$id)
+    {
+      $this->Seller_model->activate_user($id);
+      redirect($type=='artist'?'site/all_artists':'site/all_buyers');
+    }
+    public function delete_artist($id)
+    {
+      $this->Seller_model->delete_user($id);
+      redirect('site/all_artists');
+    }
+    public function delete_buyer($id)
+    {
+      $this->Seller_model->delete_user($id);
+      redirect('site/all_buyers');
     }
 }

@@ -506,6 +506,16 @@ class Seller_model extends CI_Model {
         $this->db->delete('messages');
     }
 
+    public function delete_user($id)
+    {
+        $this->db->trans_start();
+        $this->db->where('user_id',$id);
+        $this->db->delete('user');
+        $this->db->where('id',$id);
+        $this->db->delete('user');
+        $this->db->trans_complete();
+    }
+
     public function get_buyer_details($userid)
     {
         $this->db->select('*');
@@ -612,6 +622,16 @@ class Seller_model extends CI_Model {
     {
         $this->db->where('id',$bid);
         $this->db->update('bids',$data);
+    }
+    public function activate_user($id)
+    {
+        $this->db->where('id',$id);
+        $this->db->update('user',['active'=>1]);
+    }
+    public function deactivate_user($id)
+    {
+        $this->db->where('id',$id);
+        $this->db->update('user',['active'=>0]);
     }
 
     public function get_bid_details($bid)

@@ -19,6 +19,11 @@ class Main extends MY_Controller
 
 	public function login()
 	{
+		if(isset($_GET['error'])){
+			$this->data['message']='Your account is temporarily deactivated by admin, please contact admin';
+		}
+		else
+		$this->data['message']='';
 		$this->load->helper('security');
 		$this->load->library('form_validation');
 
@@ -34,16 +39,22 @@ class Main extends MY_Controller
 			$user = $this->login->login($this->input->post('username'),$this->input->post('password'));
 			print_r($user);
 			if($user) {
-				$data = array(
-					'username' => $user->username,
-					'user_id' => $user->id,
-					'type' => $user->type,
-					'image' => $user->image,
-					'currently_logged_in' => 1
-				);
-				$this->session->set_userdata($data);
-				print_r($this->session->userdata());
-				redirect('site/index');
+				if($user->active==1){
+					$data = array(
+						'username' => $user->username,
+						'user_id' => $user->id,
+						'type' => $user->type,
+						'image' => $user->image,
+						'currently_logged_in' => 1
+					);
+					$this->session->set_userdata($data);
+					print_r($this->session->userdata());
+					redirect('site/index');
+				}
+				else{
+					$this->session->set_flashdata('message','Your account is temporarily deactivated');
+					redirect('main/login?error=401');
+				}
 			}
 			else{
 				redirect('main');

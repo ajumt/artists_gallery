@@ -1,3 +1,27 @@
+<?php 
+function toggleUserActivity($userData){
+    $icon='fa-user-circle-o';
+    $action='site/deactivate_user/buyer/'.$userData->id;
+    $title='deactivate this user';
+    $color=' #fd0000';
+    if(!$userData->active){
+        $icon='fa-ban';
+        $color=' #00ff00';
+        $action='site/activate_user/buyer/'.$userData->id;
+        $title='activate this user';
+    }
+    $attrs='class="btn btn-xs btn-flat" style="background-color:'.$color.';height: 34px;width: 36px;"';
+    $attrs.='onclick="return confirm(\'Are you sure that you want to '.$title.'?\')"';
+    return '<a '.$attrs.' title="'.$title.'" href="'.site_url($action).'"><i class="fa '.$icon.'" aria-hidden="true"></i></a>';    
+}
+function deleteButton($item){
+    $attrs='class="btn btn-xs btn-flat" style="background-color: #fdb813;height: 34px;width: 36px;" ';
+    $attrs.='onclick="return confirm(\'Are you sure that you want to delete this user?\')"';
+    $action='site/delete_buyer/'.$item->id;
+    return '<a '.$attrs.' title="Delete Item" href="'.site_url($action).'"><i class="fa fa-trash" aria-hidden="true"></i></a>';    
+}
+?>
+
 <div class="cart-table-area section-padding-100">
     <div class="container-fluid">
         <div class="row">
@@ -19,6 +43,7 @@
                                                 <th>City</th>
                                                 <th>District</th>
                                                 <th>Pin</th>
+                                                <th>Actions</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -45,6 +70,9 @@
                                                     </td>
                                                     <td>
                                                         <?php echo $item->pin; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo  toggleUserActivity($item)." ".deleteButton($item)?>
                                                     </td>
                                                 </tr>
                                             <?php }?>

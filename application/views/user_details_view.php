@@ -19,16 +19,16 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="cart_product_img">
-                                                        <a href="#"><img src="<?php echo base_url('media/uploads/'.$user->uimage)?>"></a>
+                                                        <a href="#"><img src="<?php echo base_url('media/uploads/'.$userData->uimage)?>"></a>
                                                     </td>
 
                                                     <td>
-                                                        <?php echo $user->first_name.' '.$user->last_name; ?><br>
-                                                        <?php echo $user->mobile_number;?><br>
-                                                        <?php echo $user->email;?><br>
-                                                        <?php echo $user->city; ?><br>
-                                                        <?php echo $user->district;?><br>
-                                                        <?php echo $user->pin;?><br>
+                                                        <?php echo $userData->first_name.' '.$userData->last_name; ?><br>
+                                                        <?php echo $userData->mobile_number;?><br>
+                                                        <?php echo $userData->email;?><br>
+                                                        <?php echo $userData->city; ?><br>
+                                                        <?php echo $userData->district;?><br>
+                                                        <?php echo $userData->pin;?><br>
                                                     </td>
                                                 </tr>
                                             </tbody>

@@ -27,18 +27,18 @@ class MY_Controller extends CI_Controller
         $admin_menu = array(
             array('href'=>'site/index','text'=>'Home','img'=>'dashboard.png'),
             array('href'=>'site/shop','text'=>'Shop','img'=>'shop.png'),
-            array('href'=>'site/art_category','text'=>'Art Categorise','img'=>'categories.png'),
-            array('href'=>'Productcategory/display_product_category','text'=>'Product Categorise','img'=>'categories.png'),
+            // array('href'=>'site/art_category','text'=>'Art Categorise','img'=>'categories.png'),
+            array('href'=>'Productcategory/display_product_category','text'=>'Categories','img'=>'categories.png'),
             array('href'=>'Productcategory/view_product','text'=>'Products','img'=>'product.png'),
-            array('href'=>'Site/seller_view','text'=>'Artists','img'=>'artists.png'),
-            array('href'=>'Site/buyer_view','text'=>'Buyers','img'=>'buyers.png'),
+            array('href'=>'site/all_artists','text'=>'Artists','img'=>'artists.png'),
+            array('href'=>'site/all_buyers','text'=>'Buyers','img'=>'buyers.png'),
 //            array('href'=>'site/signin','text'=>'Sign Up','img'=>'dashboard.png'),
             array('href'=>'main/logout','text'=>'Logout','img'=>'signout.png'),
         );
         $artist_menu = array(
             array('href'=>'site/index','text'=>'Home','img'=>'dashboard.png'),
             array('href'=>'site/shop','text'=>'Shop','img'=>'shop.png'),
-//            array('href'=>'site/cart','text'=>'Cart','img'=>'dashboard.png'),
+            array('href'=>'site/cart','text'=>'Cart','img'=>'dashboard.png'),
             array('href'=>'Artist/index','text'=>'My Gallery','img'=>'dashboard.png'),
             array('href'=>'Artist/my_product_view','text'=>'My Product','img'=>'dashboard.png'),
             array('href'=>'Artist/active_bid','text'=>'Bids','img'=>'dashboard.png'),

@@ -2,6 +2,11 @@
 
 <div class="row" style="width: 70%;">
     <div class="col-md-12 grid-margin stretch-card"style="width: 70%; padding-top: 55px; height: 70%;">
+        <?php if($message!=''){?>
+        <div class="alert alert-warning">
+            <?php echo $message; ?>
+        </div>
+        <?php }?>
         <div class="card" style="width: 90%; padding-top: 20px;padding-bottom: 40px;">
             <div class="card-body"style="width: 70%;">
                 <h4 class="card-title">Login</h4>

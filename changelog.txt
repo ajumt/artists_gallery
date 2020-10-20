@@ -1,0 +1,16 @@
+1.site/shop product category/price filter
+2.cart quantity issue
+//3.buyer bidding option available
+//4.messages for buyer place order error
+//5.remove cart option for public
+//6.public add to cart ->login
+//7.admin remove art categories
+//8.admin artists detailed view error
+9.admin delete buyer/artists
+10.admin remove add cart
+11.admin manage comment
+//12.artist cart page missing
+13.home & shop not needed
+14.artist edit product
+15.artist remove product
+16.
