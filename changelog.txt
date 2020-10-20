@@ -6,9 +6,9 @@
 //6.public add to cart ->login
 //7.admin remove art categories
 //8.admin artists detailed view error
-9.admin delete buyer/artists
-10.admin remove add cart
-11.admin manage comment
+//9.admin delete buyer/artists
+//10.admin remove add cart
+//11.admin manage comment
 //12.artist cart page missing
 13.home & shop not needed
 14.artist edit product

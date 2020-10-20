@@ -1,3 +1,12 @@
+<?php 
+function deleteComment($user,$product,$comment){
+    if(isset($user['user_id'])&&$user['type']=='Admin'){
+        $action=site_url('site/delete_comment/'.$product->id.'/'.$comment->id);
+        return '<span style="float:right"><a href="'.$action.'"><i class="fa fa-trash"></i></a></span>';
+    }
+    else return '';
+}
+?>
 <div class="single-product-area section-padding-100 clearfix" xmlns="http://www.w3.org/1999/html">
     <div class="container-fluid">
 
@@ -20,19 +29,18 @@
             <?php foreach($users as $item){?>
                 <div class="col-12 col-lg-7">
                     <div class="single_product_thumb">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <a class="gallery_img" href="<?php echo base_url("media/uploads/".$item->image);?>">
-                                        <img class="d-block w-100" src="<?php echo base_url("media/uploads/".$item->image);?>" alt="First slide">
-                                    </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a class="gallery_img" href="<?php echo site_url('assets/amado/img/product-img/pro-big-2.jpg')?>">
-                                        <img class="d-block w-100" src="<?php echo site_url('assets/amado/img/product-img/pro-big-2.jpg')?>" alt="Second slide">
-                                    </a>
-                                </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <a class="gallery_img" href="<?php echo base_url("media/uploads/".$item->image);?>">
+                                    <img class="d-block w-100" src="<?php echo base_url("media/uploads/".$item->image);?>" alt="First slide">
+                                </a>
                             </div>
-
+                            <div class="carousel-item">
+                                <a class="gallery_img" href="<?php echo site_url('assets/amado/img/product-img/pro-big-2.jpg')?>">
+                                    <img class="d-block w-100" src="<?php echo site_url('assets/amado/img/product-img/pro-big-2.jpg')?>" alt="Second slide">
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-12 col-lg-5">
@@ -55,15 +63,17 @@
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                 </div>
-
                             </div>
                             <!-- Avaiable -->
                             <p class="avaibility"><i class="fa fa-circle"></i> In Stock</p>
                         </div>
+                        <?php if(isset($user)&&$user['type']!='Admin'){?>
                         <br>
                         <div>
+                            
                             <a href="<?php echo site_url(isset($user['user_id'])?'site/cart/'.$item->id:'main/login') ?>" style="width: 80px; height: 27px; font-size: 10px;" class="cart-nav btn btn-success">Add To Cart</a>
                         </div>
+                        <?php }?>
                         <br>
                         <div class="short_overview my-5">
                             <a href="#"><h5>About Product</h5></a>
@@ -76,14 +86,14 @@
                 echo form_open('');?>
                     <div class="short_overview my-5">
                         <h2>  Comments: </h2>
-                        <?php if(isset($user['user_id'])){?>
+                        <?php if(isset($user['user_id'])&&$user['type']!='Admin'){?>
                         <textarea name="comment"  rows="8" cols="100"></textarea>
                         <?php echo form_submit('submit','submit ','class="btn btn-success"');?>
                         <?php }
                         if(count($comment)>0)
                             foreach($comment as $item1){ ?>
 
-                                <p><b><?php  echo $item1->username;?></b><br>
+                                <p><b><?php  echo $item1->username;?></b><?php echo isset($user)?deleteComment($user,$item,$item1):'';?><br>
                                     <i class="fa fa-cloud" style="font-size:12px; color: black;"></i>
                                     <?php echo $item1->comment; ?>
                                 </p>

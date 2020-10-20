@@ -436,6 +436,11 @@ class Site extends MY_Controller
       $this->Seller_model->delete_user($id);
       redirect('site/all_artists');
     }
+    public function delete_comment($product_id,$commentId)
+    {
+      $this->Seller_model->delete_comment($commentId);
+      redirect('seller/product_details/'.$product_id);
+    }
     public function delete_buyer($id)
     {
       $this->Seller_model->delete_user($id);

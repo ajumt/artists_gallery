@@ -48,7 +48,7 @@ class Seller_model extends CI_Model {
     public function getAllcomment($id)
     {
 
-        $this->db->select('*');
+        $this->db->select('*,comment.id as id');
         $this->db->from('comment');
         $this->db->join('user','user.id=comment.userid');
         $this->db->where('product_id',$id);
@@ -616,6 +616,12 @@ class Seller_model extends CI_Model {
     {
         $this->db->where('product_id',$id);
         $this->db->delete('cart');
+    }
+
+    public function delete_comment($id)
+    {
+        $this->db->where('id',$id);
+        $this->db->delete('comment');
     }
 
     public function update_bid_status($bid,$data)
