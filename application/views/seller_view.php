@@ -5,8 +5,8 @@
             <div class="col-12 col-lg-12">
                 <div class="cart-title mt-50">
                     <h2>My Products View <span style="float:right;">
-                    <!-- <a href="<?php echo site_url('product/add_product');?>" class="btn btn-success"><i class="fa fa-plus"></i></a></span> -->
-                        <a href="<?php echo site_url('product/my_product_view');?>" class="btn btn-success"><i class="fa fa-plus"></i></a></span>
+                        <!-- <a href="<?php echo site_url('product/my_product_view');?>" class="btn btn-success"><i class="fa fa-plus"></i></a></span> -->
+                        <a href="<?php echo site_url('product/add_product');?>" class="btn btn-success"><i class="fa fa-plus"></i></a></span>
                     </h2>
                 </div>
 
