@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                 <a href="#"><img src="<?php echo base_url('media/uploads/messages/'.$product->pimage)?>" style=" width:100%;height:40%;"></a>
+                 <a href="#"><img src="<?php echo base_url('media/uploads/'.$product->pimage)?>" style=" width:100%;height:40%;"></a>
 
                         <div class="row">
                             <br>

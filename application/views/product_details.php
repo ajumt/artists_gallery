@@ -6,6 +6,17 @@ function deleteComment($user,$product,$comment){
     }
     else return '';
 }
+function setBidButton($user,$item){
+    $show = false;
+    // $user=$this->session->userdata();
+    if(isset($user) && ($user['type']=='Artist' && $user['user_id']==$item->seller_id)){
+        $show = true;
+    }
+    $url = site_url('buyer/set_bid/'.$item->id);
+    $button = '<a href="'.$url.'"  class="btn btn-success">Set Bid</a>';
+    if($show)
+        return '<br><div>'.$button.'</div>';
+}
 function addToCartButton($user=null,$item){
     $show = true;
     // $user=$this->session->userdata();
@@ -46,7 +57,6 @@ function deleteProductButton($user=null,$item){
 ?>
 <div class="single-product-area section-padding-100 clearfix" xmlns="http://www.w3.org/1999/html">
     <div class="container-fluid">
-
         <div class="row">
             <div class="col-12">
                 <nav aria-label="breadcrumb">
@@ -104,7 +114,9 @@ function deleteProductButton($user=null,$item){
                             <!-- Avaiable -->
                             <p class="avaibility"><i class="fa fa-circle"></i> In Stock</p>
                         </div>
-                            <?php echo addToCartButton(isset($user)?$user:null,$item); echo deleteProductButton(isset($user)?$user:null,$item);?>
+                            <?php echo addToCartButton(isset($user)?$user:null,$item); 
+                            echo deleteProductButton(isset($user)?$user:null,$item);
+                            echo setBidButton(isset($user)?$user:null,$item);?>
                         <br>
                         <div class="short_overview my-5">
                             <a href="#"><h5>About Product</h5></a>

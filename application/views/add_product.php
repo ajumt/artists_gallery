@@ -72,7 +72,7 @@
 
 
 
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="row submitRow">
                             <div class="col-lg-12" style="margin-top: 20px;">
                                 <h4 class="topicTitle">Properties
@@ -110,7 +110,7 @@
 
 
                     </div>
-                    <br><br>
+                    <br><br> -->
                     <?php echo form_submit('add','Add ','class="btn btn-success pull-right" onclick="submitsubject()"');?>
 
                     <?php echo form_close();?>
