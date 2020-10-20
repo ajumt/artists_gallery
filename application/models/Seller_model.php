@@ -510,7 +510,7 @@ class Seller_model extends CI_Model {
     {
         $this->db->trans_start();
         $this->db->where('user_id',$id);
-        $this->db->delete('user');
+        $this->db->delete('messages');
         $this->db->where('id',$id);
         $this->db->delete('user');
         $this->db->trans_complete();
