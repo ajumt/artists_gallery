@@ -481,7 +481,7 @@ class Seller_model extends CI_Model {
     public function insert_image_details($artist_id,$data2)
     {
        $this->db->where('user_id',$artist_id);
-        $this->db->delete('orders');
+        // $this->db->delete('orders');
         $this->db->insert('orders',$data2);
 
 

@@ -161,17 +161,25 @@ class Buyer_model extends CI_Model {
         return $result;
     }
 
-    public function get_All_messeges()
+    public function get_All_messeges($userid)
     {
-        $this->db->select('*,messages.id as mid');
+        $this->db->select('*,messages.id as mid,orders.id as order_id,user.id as artist_id');
         $this->db->from('messages');
         $this->db->join('orders','orders.type_id=messages.id AND type="Ondemand"','left');
         $this->db->join('user','user.id=messages.artist_id','left');
+        $this->db->where('messages.user_id',$userid);
         $query=$this->db->get();
         $result=$query->result();
         return $result;
     }
+    public function insert_order_from_message($artist_id,$data2)
+    {
+       $this->db->where('user_id',$artist_id);
+        // $this->db->delete('orders');
+        $this->db->insert('orders',$data2);
 
+
+    }
     public function get_All_product($pid,$uid)
     {
         $this->db->select('*,product.image as pimage');

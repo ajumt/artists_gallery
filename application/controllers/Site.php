@@ -239,7 +239,7 @@ class Site extends MY_Controller
         $this->load->library('form_validation');
         $this->form_validation->set_rules('subject','subject','required');
         $this->form_validation->set_rules('message','message','required');
-        $this->form_validation->set_rules('file','file');
+        // $this->form_validation->set_rules('file','file');
         if($this->form_validation->run()==FALSE) {
             $this->render('send_message_view');
         }
@@ -250,33 +250,38 @@ class Site extends MY_Controller
             $data = array(
                 'subject' => $subject,
                 'message' => $message,
+                'user_id' => $this->session->userdata['user_id'],
                 'file' => $file,
                 'artist_id'=>$id
             );
-            $image=$this->upload_file();
-            if(is_array ($image))
-            {
-                $data['image'] = $image['file_name'];
+            if(isset($_FILE['file'])){
+                $image=$this->upload_file();
+                if(is_array ($image))
+                {
+                    $data['file'] = $image['file_name'];
+                }
+                else
+                {
+                    echo $image;
+                }
             }
-            else
-            {
-                echo $image;
+            else{
+                $data['file']='';
             }
-
             $this->Seller_model->insert_messages($data);
             $this->render('send_message_view');
         }
     }
 
-    public function upload_file()
+    public function upload_file($field='file')
     {
         $config['upload_path']          = './media/uploads/';
-        $config['allowed_types']        = 'gif|jpg|png|zip';
+        $config['allowed_types']        = 'gif|jpg|jpeg|png|zip';
         $config['encrypt_name']        = TRUE;
 
 
         $this->load->library('upload',$config);
-        if ( ! $this->upload->do_upload('file'))
+        if ( ! $this->upload->do_upload($field))
         {
             $data = $this->upload->display_errors();
 

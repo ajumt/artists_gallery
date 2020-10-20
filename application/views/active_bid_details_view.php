@@ -10,7 +10,7 @@
                         <p>Showing 1-8 0f 25</p>
                         <div class="view d-flex">
                             <a href="#"><i class="fa fa-th-large" aria-hidden="true"></i></a>
-                            <a href="<?php echo   site_url('product/add_product')?>"><i class="fa fa-plus" aria-hidden="true" title="Add New Products"></i></a>
+                            <!-- <a href="<?php echo   site_url('product/add_product')?>"><i class="fa fa-plus" aria-hidden="true" title="Add New Products"></i></a> -->
                         </div>
                     </div>
                     <!-- Sorting -->

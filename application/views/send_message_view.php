@@ -38,7 +38,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <?php echo form_open('');?>
+                <?php echo form_open_multipart('');?>
 <!--                 --><?php //print_r($id);?>
                 <div class="form-group">
                     <?php

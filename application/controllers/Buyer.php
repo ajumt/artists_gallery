@@ -75,12 +75,40 @@ class Buyer extends MY_Controller
 
     public function view_message()
     {
-        $msg=$this->Buyer_model->get_All_messeges();
-//            print_r($msg);
+        $userid=$this->session->userdata('user_id');
+        $msg=$this->Buyer_model->get_All_messeges($userid);
+        //    print_r($msg);
         $this->data['message']=$msg;
         $this->render('buyer_display_message_view');
     }
+    public function place_order()
+    {
+        print_r($_POST);
+        $status='Ondemand';
+        $data['type']=$status;
 
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('place_order', 'place_order', 'required');
+        if ($this->form_validation->run() === FALSE) {
+            $this->render('buyer_display_message_view');
+        } else {
+            $artist_id=$this->input->post('msg');
+            $address=$this->input->post('address');
+            $image_amount = $this->input->post('amt');
+            $msg_id=$this->input->post('msg1');
+            $data2 = array(
+                'user_id'=>$artist_id,
+                'total' => $image_amount,
+                'address'=>$address,
+                'type_id'=>$msg_id,
+                'type'=>'Ondemand'
+            );
+            $this->Buyer_model->insert_order_from_message($artist_id,$data2);
+
+            redirect('buyer/view_message');
+        }
+
+    }
     public function set_bid($pid)
     {
 //        print_r($pid);
