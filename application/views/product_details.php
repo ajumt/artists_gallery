@@ -6,6 +6,43 @@ function deleteComment($user,$product,$comment){
     }
     else return '';
 }
+function addToCartButton($user=null,$item){
+    $show = true;
+    // $user=$this->session->userdata();
+    $url = site_url('site/cart/'.$item->id);
+    
+
+    if(!isset($user)){
+        $url = site_url('main/login');
+    }
+    else{
+        if($user['type']=='Admin'){
+            $show=false;
+        }
+        else{
+            if($user['type']=='Artist' && $user['user_id']==$item->seller_id)
+                $show=false;
+        }
+    }
+    $button = '<a href="'.$url.'" style="width: 80px; height: 27px; font-size: 10px;" class="cart-nav btn btn-success">Add To Cart</a>';
+    if($show)
+        return '<br><div>'.$button.'</div>';
+
+}
+function deleteProductButton($user=null,$item){
+    $show = false;
+    // $user=$this->session->userdata();
+  
+
+    if(isset($user) && ($user['type']=='Admin'||($user['type']=='Artist' && $user['user_id']==$item->seller_id))){
+        $show = true;
+    }
+    $url = site_url('product/delete_product/'.$item->id);
+    $button = '<a href="'.$url.'"  class="btn btn-danger" onclick="return confirm(\'Are you sure that you want to delete this product?\')"><i class="fa fa-trash"></i></a>';
+    if($show)
+        return '<br><div>'.$button.'</div>';
+
+}
 ?>
 <div class="single-product-area section-padding-100 clearfix" xmlns="http://www.w3.org/1999/html">
     <div class="container-fluid">
@@ -67,13 +104,7 @@ function deleteComment($user,$product,$comment){
                             <!-- Avaiable -->
                             <p class="avaibility"><i class="fa fa-circle"></i> In Stock</p>
                         </div>
-                        <?php if(!isset($user)||($user['type']!='Admin')){?>
-                        <br>
-                        <div>
-                            
-                            <a href="<?php echo site_url(isset($user['user_id'])?'site/cart/'.$item->id:'main/login') ?>" style="width: 80px; height: 27px; font-size: 10px;" class="cart-nav btn btn-success">Add To Cart</a>
-                        </div>
-                        <?php }?>
+                            <?php echo addToCartButton(isset($user)?$user:null,$item); echo deleteProductButton(isset($user)?$user:null,$item);?>
                         <br>
                         <div class="short_overview my-5">
                             <a href="#"><h5>About Product</h5></a>

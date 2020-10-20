@@ -40,7 +40,7 @@ class MY_Controller extends CI_Controller
             array('href'=>'site/shop','text'=>'Shop','img'=>'shop.png'),
             array('href'=>'site/cart','text'=>'Cart','img'=>'dashboard.png'),
             array('href'=>'Artist/index','text'=>'My Gallery','img'=>'dashboard.png'),
-            array('href'=>'Artist/my_product_view','text'=>'My Product','img'=>'dashboard.png'),
+            array('href'=>'Artist/index','text'=>'My Product','img'=>'dashboard.png'),
             array('href'=>'Artist/active_bid','text'=>'Bids','img'=>'dashboard.png'),
             array('href'=>'Artist/myorder','text'=>'My Order','img'=>'dashboard.png'),
             array('href'=>'Artist/Shipments','text'=>'Shipments','img'=>'dashboard.png'),

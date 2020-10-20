@@ -94,7 +94,7 @@ class Productcategory_model extends CI_Model {
 
     }
 
-    public function get_shop_products($limit=4,$offset=0,$key=null,$count=false,$category=null)
+    public function get_shop_products($user=null,$limit=4,$offset=0,$key=null,$count=false,$category=null)
     {
         if($category!=null) 
             $this->db->orWhereIn('product_cat_type', $category);
@@ -103,14 +103,20 @@ class Productcategory_model extends CI_Model {
             $this->db->like('product_name', $key);
         if (!$count)
             $this->db->limit($limit, $offset);
+        if($user!=null){
+            if(isset($user['type'])&&$user['type']=='Artist'){
+                $this->db->where('seller_id!=',$user['user_id']);
+            }
+        }
         if (!$count)
             $query = $this->db->get('product');
+        
         else {
             $total = $this->db->count_all_results('product');
             return $total;
         }
         $result = $query->result();
-        $total = $this->get_shop_products($limit, $offset, $key, true);
+        $total = $this->get_shop_products($user,$limit, $offset, $key, true);
         $meta = array(
             'limit' => $limit,
             'total' => $total,

@@ -2,10 +2,15 @@
 
 
 class Seller_model extends CI_Model {
-    public function getAllseller()
+    public function getAllseller($user=null)
     {
         $this->db->select('*');
         $this->db->from('product');
+        if($user!=null){
+            if(isset($user['type'])&&$user['type']=='Artist'){
+                $this->db->where('seller_id!=',$user['user_id']);
+            }
+        }
         $this->db->group_by('product_name');
         $query = $this->db->get();
         $result = $query->result();
@@ -114,6 +119,12 @@ class Seller_model extends CI_Model {
     {
         $this->db->where('id', $id);
         $this->db->delete('seller');
+    }
+
+    function delete_product($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('product');
     }
 
     public function comment($data)

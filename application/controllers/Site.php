@@ -14,7 +14,7 @@ class Site extends MY_Controller
       public function index()
     {
         // print_r($this->session->userdata());
-        $this->data['products']=$this->Seller_model->getAllseller();
+        $this->data['products']=$this->Seller_model->getAllseller($this->session->userdata());
         $this->render('sitedashboard');
     }
     public function shop($page=1)
@@ -29,7 +29,7 @@ class Site extends MY_Controller
             $key = $this->input->get('key');
         $offset = $page*$limit;
         $category=isset($_GET['cats'])?$_GET['cats']:[];
-        $product_data = $this->productcategory_model->get_shop_products($limit,$offset,$category);
+        $product_data = $this->productcategory_model->get_shop_products($this->session->userdata(),$limit,$offset,$category);
         $product_data['meta']['page']=$page;
         $this->data['shop_products']= $product_data['products'];
         $this->data['meta']= $product_data['meta'];
