@@ -189,14 +189,15 @@ class Seller_model extends CI_Model {
     function cart_insert($data)
     {
         $row = $this->check_cart_item($data['product_id'],$data['user_id']);
-        if($row===false){
+        // print_r($row);
+        if($row==false){
             $this->db->insert('cart',$data);
         }
         else{
             $this->db->where('id',$row->id);
-            $this->db->update('cart',['product_qty'=>$data['product_qty']]);
+            $this->db->update('cart',['product_qty'=>$data['product_qty']!=1?$data['product_qty']:$row->product_qty+1]);
         }
-        echo $this->db->last_query();
+        // echo $this->db->last_query();
 
     }
 
