@@ -27,14 +27,16 @@ class Product_model extends CI_Model {
 
         $product_data=array();
         $properties=array();
-        for($i=0;$i<count($data1['product_property']);$i++){
-            $row3=array();
-            $row3['product_id']=$product_id;
-            $row3['product_property_name']=$data1['product_property_name'][$i];
-            $row3['product_property']=$data1['product_property'][$i];
-            $properties[]=$row3;
+        if(is_array($data1['product_property'])&&count($data1['product_property'])>0){
+            for($i=0;$i<count($data1['product_property']);$i++){
+                $row3=array();
+                $row3['product_id']=$product_id;
+                $row3['product_property_name']=$data1['product_property_name'][$i];
+                $row3['product_property']=$data1['product_property'][$i];
+                $properties[]=$row3;
+            }
+            $this->db->insert_batch('product_property',$properties);
         }
-        $this->db->insert_batch('product_property',$properties);
         return $product_id;
 
     }
