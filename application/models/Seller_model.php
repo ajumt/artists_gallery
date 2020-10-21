@@ -188,15 +188,23 @@ class Seller_model extends CI_Model {
     }
     function cart_insert($data)
     {
-        $this->db->insert('cart',$data);
+        $row = $this->check_cart_item($data['product_id'],$data['user_id']);
+        if($row===false){
+            $this->db->insert('cart',$data);
+        }
+        else{
+            $this->db->where('id',$row->id);
+            $this->db->update('cart',['product_qty'=>$data['product_qty']]);
+        }
         echo $this->db->last_query();
+
     }
 
     public function display_shopping_cart($userid)
     {
         $this->db->select('*');
         $this->db->from('cart');
-        $this->db->join('product','product.id=cart.product_id');
+        $this->db->join('product','product.id=cart.product_id','left');
         $this->db->where('cart.user_id',$userid);
         $query=$this->db->get();
         $result=$query->result();

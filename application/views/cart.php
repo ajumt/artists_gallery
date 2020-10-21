@@ -43,14 +43,14 @@
                                 </div>
                             </td>
                             <td class="total">
-                                <span class="ind-total" id="total<?php echo $item->id?>"><?php echo $item->product_price;?></span>
+                                <span class="ind-total" id="total<?php echo $item->id?>"><?php echo $item->product_price*$item->product_qty;?></span>
                             </td>
                             <td>
                                 <a class="btn btn-danger"  href="<?php echo site_url('Site/delete_product/'.$item->id);?>" class="qty-trash"><i class="fa fa-trash" aria-hidden="true"></i></a>
 
                             </td>
                           </tr>
-                        <?php  $summ=($summ+$item->product_price);?>
+                        <?php  $summ=($summ+($item->product_price*$item->product_qty));?>
                         <?php }?>
                         </tbody>
                     </table>
@@ -143,13 +143,14 @@
 //        console.log(str);
         var id=$(inp).attr('data-id');
 //        console.log(id);
-        var url=site_url+"site/cart/"+str+"/"+id;
+        var url=site_url+"site/cart/"+id+"/"+str;
 //            console.log(url);
         $.ajax({
             type: 'GET',
             url: url,
             dataType: 'html',
             success:function (data) {
+                location.reload();
             }
         });
 

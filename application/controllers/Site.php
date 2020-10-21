@@ -49,12 +49,12 @@ class Site extends MY_Controller
                 'product_qty' => $quantity
             );
 //            print_r($data);
-            $check = $this->Seller_model->check_cart_item($id,$userid);
+            // $check = $this->Seller_model->check_cart_item($id,$userid);
 
-            if($check==FALSE){
+            // if($check==FALSE){
                 $this->data['cart_item']=$this->Seller_model->cart_insert($data);
                 redirect('site/cart');
-            }
+            // }
         }
 
         $this->data['cart']=$this->Seller_model->display_shopping_cart($userid);
