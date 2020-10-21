@@ -101,6 +101,7 @@ class Site extends MY_Controller
             $userid= $this->session->userdata('user_id');
             $product_details=$this->Seller_model->getProducts($userid);
             $this->Seller_model->insert_cart_order($product_details,$order_id);
+            $this->Seller_model->emptyCart($userid);
             redirect('Site/index');
         }
     }

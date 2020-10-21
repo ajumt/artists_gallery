@@ -263,7 +263,11 @@ class Seller_model extends CI_Model {
             $cart_order[]=$row;
         }
         $this->db->insert_batch('order_details',$cart_order);
-
+    }
+    public function emptyCart($userId){
+        
+        $this->db->where('user_id',$userId);
+        $this->db->delete('cart');
     }
     public function getProduct($userid)
     {
