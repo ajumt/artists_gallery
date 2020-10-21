@@ -15,18 +15,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <tr>
                             <?php foreach($product as $i=>$item){?>
-                            <td>
-                                <h5><?php echo $i+1;?></h5>
-                            </td>
-
-                            <td>
-                                <a href="<?php echo site_url('Seller/buyer_product_view/'.$item->order_id)?>">view Buyer orders</a>
-                            </td>
+                                <tr>
+                                    <td>
+                                        <h5><?php echo $i+1;?></h5>
+                                    </td>
 
                                     <td>
-                                      <?php if($item->status==0){?>
+                                        <a href="<?php echo site_url('Seller/buyer_product_view/'.$item->order_id)?>">#order<?php echo $item->order_id;?></a>
+                                    </td>
+
+                                    <td>
+                                        <?php if($item->status==0){?>
                                         <button class="btn btn-danger" name="btn1">Not Ship</button>
                                         <?php } else if($item->status==1){ ?>
                                         <button class="btn btn-success" name="btn2">Ship</button>
@@ -34,8 +34,8 @@
                                         <button class="btn btn-success" name="btn3">Delivered</button>
                                         <?php } ?>
                                     </td>
+                                </tr>
                             <?php }?>
-                        </tr>
                         </tbody>
                     </table>
                 </div>

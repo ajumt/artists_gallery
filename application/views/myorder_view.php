@@ -22,26 +22,24 @@
                                     </thead>
                                     <tbody>
                                         <?php  foreach($product as $item){?>
-                                        <?php if($item->orderstatus==0){?>
-                                      <tr>
-                                        <td>
-                                            <h5><?php echo $item->product_name;?></h5>
-                                        </td>
-                                        <td>
-                                            <h5><?php echo $item->total;?></h5>
-                                        </td>
-                                        <td>
-                                            <h5><?php echo $item->address;?></h5>
-                                        </td>
-                                        <td>
-                                           <a href="<?php echo site_url('Site/product_status_view/'.$item->order_id)?>">view orders</a>
-                                        </td>
-                                        <td>
-                                              <a class="btn btn-danger" href="#">Not Ship</a>
-                                        </td>
+                                            <tr>
+                                                <td>
+                                                    <h5><?php echo $item->product_name;?></h5>
+                                                </td>
+                                                <td>
+                                                    <h5><?php echo $item->total;?></h5>
+                                                </td>
+                                                <td>
+                                                    <h5><?php echo $item->address;?></h5>
+                                                </td>
+                                                <td>
+                                                <a href="<?php echo site_url('Site/product_status_view/'.$item->order_id)?>">view orders</a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-danger" href="#">Not Shipped</a>
+                                                </td>
+                                            </tr>
                                         <?php }?>
-                                        <?php }?>
-                                    </tr>
                                     </tbody>
                             </table>
                         </div>

@@ -13,23 +13,29 @@
                             <th>Product Name</th>
                             <th>Price</th>
                             <th>Quantity</th>
+                            <th>Total</th>
                         </tr>
                         </thead>
                         <tbody>
+                            <?php foreach($products as $product){?>
                             <tr>
                                 <td>
-                                    <a href="#" ><img src="<?php echo base_url('media/uploads/'.$products->image);?>"></a>
+                                    <a href="#" ><img src="<?php echo base_url('media/uploads/'.$product->image);?>"></a>
                                 </td>
                                 <td>
-                                    <?php echo $products->product_name;?>
+                                    <?php echo $product->product_name;?>
                                 </td>
                                 <td>
-                                    <?php echo $products->product_price;?>
+                                    <?php echo $product->product_price;?>
                                 </td>
                                 <td>
-                                    <?php echo $products->product_quantity;?>
+                                    <?php echo $product->product_quantity;?>
+                                </td>
+                                <td>
+                                    <?php echo $product->product_quantity*$product->rate;?>
                                 </td>
                             </tr>
+                            <?php }?>
                         </tbody>
                     </table>
 <!--                        <input type="hidden" name="buyer_id" value="--><?php //echo $products->id;?><!--">-->

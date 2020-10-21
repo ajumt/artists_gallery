@@ -92,12 +92,12 @@
                         Artists<input type="checkbox" name="check"/>
                     </div>
                 </div>
-                <div class="col-md-12">
+                <!-- <div class="col-md-12">
                     <div class="form_group">
                         <?php
                         echo form_dropdown('artists',$artists,'','class="form-control"')?>
                     </div><br/>
-                </div>
+                </div> -->
                 <div class="col-md-12">
                     <div class="form_group">
                         <?php
@@ -117,26 +117,6 @@
             </div>
         </div>
     </div>
-
-    <footer class="footer_area clearfix" style="width: 100%;height: 1px;">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Single Widget Area -->
-                <div class="col-12 col-lg-12">
-                    <div class="single_widget_area">
-                        <!-- Logo -->
-                        <div class="footer-logo mr-50">
-                            <a href="sitedashboard.php"><img src="<?php echo site_url('assets/amado/img/core-img/logo2.png')?>" alt=""></a>
-                        </div>
-                        <!-- Copywrite Text -->
-                        <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
     <style>
         p.error{
             color:red;

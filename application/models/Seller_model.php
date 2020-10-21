@@ -215,13 +215,13 @@ class Seller_model extends CI_Model {
         $this->db->where('user_id', $data['user_id']);
         $query = $this->db->get('orders');
         $row= $query->row();
-        if ($query->num_rows() == 1) {
-            $this->db->where('user_id', $data['user_id']);
-            $this->db->delete('orders');
+        // if ($query->num_rows() == 1) {
+        //     $this->db->where('user_id', $data['user_id']);
+        //     $this->db->delete('orders');
 
-            $this->db->where('order_id',$row->id);
-            $this->db->delete('order_details');
-        }
+        //     $this->db->where('order_id',$row->id);
+        //     $this->db->delete('order_details');
+        // }
 
 
         $this->db->insert('orders',$data);
@@ -258,7 +258,7 @@ class Seller_model extends CI_Model {
     public function insert_cart_order($product_details,$order_id){
         $cart_order =array();
         foreach($product_details as $item){
-            $row=array('order_id'=>$order_id,'product_id'=>$item->product_id,'quantity'=>$item->product_qty);
+            $row=array('order_id'=>$order_id,'product_id'=>$item->product_id,'rate'=>$item->product_price,'quantity'=>$item->product_qty);
             $cart_order[]=$row;
         }
         $this->db->insert_batch('order_details',$cart_order);

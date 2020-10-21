@@ -82,7 +82,7 @@ class Buyer_model extends CI_Model {
         $this->db->join('order_details','order_details.product_id=product.id','left');
         $this->db->where('order_id',$id);
         $query=$this->db->get();
-        $result=$query->row();
+        $result=$query->result();
         return $result;
     }
 
